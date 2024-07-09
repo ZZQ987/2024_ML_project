@@ -1,0 +1,5 @@
+data_root: /data1/student/zzq/LibContinual/data/cifar100
+image_size: 32
+pin_memory: False
+augment: True
+workers: 8
