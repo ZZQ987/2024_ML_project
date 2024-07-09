@@ -1,0 +1,1497 @@
+{'augment': True,
+ 'backbone': {'kwargs': {'embed_dim': 768,
+                         'n_tasks': 10,
+                         'num_heads': 12,
+                         'pretrained': True,
+                         'rank': 10},
+              'name': 'vit_inflora'},
+ 'batch_size': 128,
+ 'buffer': {'kwargs': {'batch_size': 128,
+                       'buffer_size': 0,
+                       'strategy': 'None'},
+            'name': 'LinearBuffer'},
+ 'classifier': {'kwargs': {'EPSILON': 1e-08,
+                           'feat_dim': 768,
+                           'lamb': 0.95,
+                           'lame': 1.0,
+                           'num_class': 100,
+                           'task_num': 10},
+                'name': 'InfLoRA'},
+ 'data_root': '/data1/student/zzq/LibContinual/data/cifar100',
+ 'dataset': 'cifar',
+ 'deterministic': True,
+ 'device_ids': 7,
+ 'epoch': 20,
+ 'image_size': 32,
+ 'inc_cls_num': 10,
+ 'includes': ['headers/data.yaml', 'headers/device.yaml', 'headers/model.yaml'],
+ 'init_cls_num': 10,
+ 'init_epoch': 20,
+ 'lr_scheduler': {'name': 'CosineSchedule'},
+ 'n_gpu': 1,
+ 'optimizer': {'kwargs': {'betas': [0.9, 0.999],
+                          'lr': 0.0005,
+                          'weight_decay': 0.0},
+               'name': 'Adam'},
+ 'pin_memory': False,
+ 'rank': 7,
+ 'save_path': './new_inflora',
+ 'seed': 1234,
+ 'task_num': 10,
+ 'val_per_epoch': 10,
+ 'warmup': 0,
+ 'workers': 16}
+ViTZoo(
+  (feat): VisionTransformer(
+    (patch_embed): PatchEmbed(
+      (proj): Conv2d(3, 768, kernel_size=(16, 16), stride=(16, 16))
+      (norm): Identity()
+    )
+    (pos_drop): Dropout(p=0.0, inplace=False)
+    (blocks): Sequential(
+      (0): Block_LoRA(
+        (norm1): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (attn): Attention_LoRA(
+          (qkv): Linear(in_features=768, out_features=2304, bias=True)
+          (attn_drop): Dropout(p=0.0, inplace=False)
+          (proj): Linear(in_features=768, out_features=768, bias=True)
+          (proj_drop): Dropout(p=0.0, inplace=False)
+          (lora_A_k): ModuleList(
+            (0-9): 10 x Linear(in_features=768, out_features=10, bias=False)
+          )
+          (lora_B_k): ModuleList(
+            (0-9): 10 x Linear(in_features=10, out_features=768, bias=False)
+          )
+          (lora_A_v): ModuleList(
+            (0-9): 10 x Linear(in_features=768, out_features=10, bias=False)
+          )
+          (lora_B_v): ModuleList(
+            (0-9): 10 x Linear(in_features=10, out_features=768, bias=False)
+          )
+        )
+        (ls1): Identity()
+        (drop_path1): Identity()
+        (norm2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (mlp): Mlp(
+          (fc1): Linear(in_features=768, out_features=3072, bias=True)
+          (act): GELU(approximate='none')
+          (fc2): Linear(in_features=3072, out_features=768, bias=True)
+          (drop): Dropout(p=0.0, inplace=False)
+        )
+        (ls2): Identity()
+        (drop_path2): Identity()
+      )
+      (1): Block_LoRA(
+        (norm1): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (attn): Attention_LoRA(
+          (qkv): Linear(in_features=768, out_features=2304, bias=True)
+          (attn_drop): Dropout(p=0.0, inplace=False)
+          (proj): Linear(in_features=768, out_features=768, bias=True)
+          (proj_drop): Dropout(p=0.0, inplace=False)
+          (lora_A_k): ModuleList(
+            (0-9): 10 x Linear(in_features=768, out_features=10, bias=False)
+          )
+          (lora_B_k): ModuleList(
+            (0-9): 10 x Linear(in_features=10, out_features=768, bias=False)
+          )
+          (lora_A_v): ModuleList(
+            (0-9): 10 x Linear(in_features=768, out_features=10, bias=False)
+          )
+          (lora_B_v): ModuleList(
+            (0-9): 10 x Linear(in_features=10, out_features=768, bias=False)
+          )
+        )
+        (ls1): Identity()
+        (drop_path1): Identity()
+        (norm2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (mlp): Mlp(
+          (fc1): Linear(in_features=768, out_features=3072, bias=True)
+          (act): GELU(approximate='none')
+          (fc2): Linear(in_features=3072, out_features=768, bias=True)
+          (drop): Dropout(p=0.0, inplace=False)
+        )
+        (ls2): Identity()
+        (drop_path2): Identity()
+      )
+      (2): Block_LoRA(
+        (norm1): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (attn): Attention_LoRA(
+          (qkv): Linear(in_features=768, out_features=2304, bias=True)
+          (attn_drop): Dropout(p=0.0, inplace=False)
+          (proj): Linear(in_features=768, out_features=768, bias=True)
+          (proj_drop): Dropout(p=0.0, inplace=False)
+          (lora_A_k): ModuleList(
+            (0-9): 10 x Linear(in_features=768, out_features=10, bias=False)
+          )
+          (lora_B_k): ModuleList(
+            (0-9): 10 x Linear(in_features=10, out_features=768, bias=False)
+          )
+          (lora_A_v): ModuleList(
+            (0-9): 10 x Linear(in_features=768, out_features=10, bias=False)
+          )
+          (lora_B_v): ModuleList(
+            (0-9): 10 x Linear(in_features=10, out_features=768, bias=False)
+          )
+        )
+        (ls1): Identity()
+        (drop_path1): Identity()
+        (norm2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (mlp): Mlp(
+          (fc1): Linear(in_features=768, out_features=3072, bias=True)
+          (act): GELU(approximate='none')
+          (fc2): Linear(in_features=3072, out_features=768, bias=True)
+          (drop): Dropout(p=0.0, inplace=False)
+        )
+        (ls2): Identity()
+        (drop_path2): Identity()
+      )
+      (3): Block_LoRA(
+        (norm1): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (attn): Attention_LoRA(
+          (qkv): Linear(in_features=768, out_features=2304, bias=True)
+          (attn_drop): Dropout(p=0.0, inplace=False)
+          (proj): Linear(in_features=768, out_features=768, bias=True)
+          (proj_drop): Dropout(p=0.0, inplace=False)
+          (lora_A_k): ModuleList(
+            (0-9): 10 x Linear(in_features=768, out_features=10, bias=False)
+          )
+          (lora_B_k): ModuleList(
+            (0-9): 10 x Linear(in_features=10, out_features=768, bias=False)
+          )
+          (lora_A_v): ModuleList(
+            (0-9): 10 x Linear(in_features=768, out_features=10, bias=False)
+          )
+          (lora_B_v): ModuleList(
+            (0-9): 10 x Linear(in_features=10, out_features=768, bias=False)
+          )
+        )
+        (ls1): Identity()
+        (drop_path1): Identity()
+        (norm2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (mlp): Mlp(
+          (fc1): Linear(in_features=768, out_features=3072, bias=True)
+          (act): GELU(approximate='none')
+          (fc2): Linear(in_features=3072, out_features=768, bias=True)
+          (drop): Dropout(p=0.0, inplace=False)
+        )
+        (ls2): Identity()
+        (drop_path2): Identity()
+      )
+      (4): Block_LoRA(
+        (norm1): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (attn): Attention_LoRA(
+          (qkv): Linear(in_features=768, out_features=2304, bias=True)
+          (attn_drop): Dropout(p=0.0, inplace=False)
+          (proj): Linear(in_features=768, out_features=768, bias=True)
+          (proj_drop): Dropout(p=0.0, inplace=False)
+          (lora_A_k): ModuleList(
+            (0-9): 10 x Linear(in_features=768, out_features=10, bias=False)
+          )
+          (lora_B_k): ModuleList(
+            (0-9): 10 x Linear(in_features=10, out_features=768, bias=False)
+          )
+          (lora_A_v): ModuleList(
+            (0-9): 10 x Linear(in_features=768, out_features=10, bias=False)
+          )
+          (lora_B_v): ModuleList(
+            (0-9): 10 x Linear(in_features=10, out_features=768, bias=False)
+          )
+        )
+        (ls1): Identity()
+        (drop_path1): Identity()
+        (norm2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (mlp): Mlp(
+          (fc1): Linear(in_features=768, out_features=3072, bias=True)
+          (act): GELU(approximate='none')
+          (fc2): Linear(in_features=3072, out_features=768, bias=True)
+          (drop): Dropout(p=0.0, inplace=False)
+        )
+        (ls2): Identity()
+        (drop_path2): Identity()
+      )
+      (5): Block_LoRA(
+        (norm1): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (attn): Attention_LoRA(
+          (qkv): Linear(in_features=768, out_features=2304, bias=True)
+          (attn_drop): Dropout(p=0.0, inplace=False)
+          (proj): Linear(in_features=768, out_features=768, bias=True)
+          (proj_drop): Dropout(p=0.0, inplace=False)
+          (lora_A_k): ModuleList(
+            (0-9): 10 x Linear(in_features=768, out_features=10, bias=False)
+          )
+          (lora_B_k): ModuleList(
+            (0-9): 10 x Linear(in_features=10, out_features=768, bias=False)
+          )
+          (lora_A_v): ModuleList(
+            (0-9): 10 x Linear(in_features=768, out_features=10, bias=False)
+          )
+          (lora_B_v): ModuleList(
+            (0-9): 10 x Linear(in_features=10, out_features=768, bias=False)
+          )
+        )
+        (ls1): Identity()
+        (drop_path1): Identity()
+        (norm2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (mlp): Mlp(
+          (fc1): Linear(in_features=768, out_features=3072, bias=True)
+          (act): GELU(approximate='none')
+          (fc2): Linear(in_features=3072, out_features=768, bias=True)
+          (drop): Dropout(p=0.0, inplace=False)
+        )
+        (ls2): Identity()
+        (drop_path2): Identity()
+      )
+      (6): Block_LoRA(
+        (norm1): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (attn): Attention_LoRA(
+          (qkv): Linear(in_features=768, out_features=2304, bias=True)
+          (attn_drop): Dropout(p=0.0, inplace=False)
+          (proj): Linear(in_features=768, out_features=768, bias=True)
+          (proj_drop): Dropout(p=0.0, inplace=False)
+          (lora_A_k): ModuleList(
+            (0-9): 10 x Linear(in_features=768, out_features=10, bias=False)
+          )
+          (lora_B_k): ModuleList(
+            (0-9): 10 x Linear(in_features=10, out_features=768, bias=False)
+          )
+          (lora_A_v): ModuleList(
+            (0-9): 10 x Linear(in_features=768, out_features=10, bias=False)
+          )
+          (lora_B_v): ModuleList(
+            (0-9): 10 x Linear(in_features=10, out_features=768, bias=False)
+          )
+        )
+        (ls1): Identity()
+        (drop_path1): Identity()
+        (norm2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (mlp): Mlp(
+          (fc1): Linear(in_features=768, out_features=3072, bias=True)
+          (act): GELU(approximate='none')
+          (fc2): Linear(in_features=3072, out_features=768, bias=True)
+          (drop): Dropout(p=0.0, inplace=False)
+        )
+        (ls2): Identity()
+        (drop_path2): Identity()
+      )
+      (7): Block_LoRA(
+        (norm1): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (attn): Attention_LoRA(
+          (qkv): Linear(in_features=768, out_features=2304, bias=True)
+          (attn_drop): Dropout(p=0.0, inplace=False)
+          (proj): Linear(in_features=768, out_features=768, bias=True)
+          (proj_drop): Dropout(p=0.0, inplace=False)
+          (lora_A_k): ModuleList(
+            (0-9): 10 x Linear(in_features=768, out_features=10, bias=False)
+          )
+          (lora_B_k): ModuleList(
+            (0-9): 10 x Linear(in_features=10, out_features=768, bias=False)
+          )
+          (lora_A_v): ModuleList(
+            (0-9): 10 x Linear(in_features=768, out_features=10, bias=False)
+          )
+          (lora_B_v): ModuleList(
+            (0-9): 10 x Linear(in_features=10, out_features=768, bias=False)
+          )
+        )
+        (ls1): Identity()
+        (drop_path1): Identity()
+        (norm2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (mlp): Mlp(
+          (fc1): Linear(in_features=768, out_features=3072, bias=True)
+          (act): GELU(approximate='none')
+          (fc2): Linear(in_features=3072, out_features=768, bias=True)
+          (drop): Dropout(p=0.0, inplace=False)
+        )
+        (ls2): Identity()
+        (drop_path2): Identity()
+      )
+      (8): Block_LoRA(
+        (norm1): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (attn): Attention_LoRA(
+          (qkv): Linear(in_features=768, out_features=2304, bias=True)
+          (attn_drop): Dropout(p=0.0, inplace=False)
+          (proj): Linear(in_features=768, out_features=768, bias=True)
+          (proj_drop): Dropout(p=0.0, inplace=False)
+          (lora_A_k): ModuleList(
+            (0-9): 10 x Linear(in_features=768, out_features=10, bias=False)
+          )
+          (lora_B_k): ModuleList(
+            (0-9): 10 x Linear(in_features=10, out_features=768, bias=False)
+          )
+          (lora_A_v): ModuleList(
+            (0-9): 10 x Linear(in_features=768, out_features=10, bias=False)
+          )
+          (lora_B_v): ModuleList(
+            (0-9): 10 x Linear(in_features=10, out_features=768, bias=False)
+          )
+        )
+        (ls1): Identity()
+        (drop_path1): Identity()
+        (norm2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (mlp): Mlp(
+          (fc1): Linear(in_features=768, out_features=3072, bias=True)
+          (act): GELU(approximate='none')
+          (fc2): Linear(in_features=3072, out_features=768, bias=True)
+          (drop): Dropout(p=0.0, inplace=False)
+        )
+        (ls2): Identity()
+        (drop_path2): Identity()
+      )
+      (9): Block_LoRA(
+        (norm1): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (attn): Attention_LoRA(
+          (qkv): Linear(in_features=768, out_features=2304, bias=True)
+          (attn_drop): Dropout(p=0.0, inplace=False)
+          (proj): Linear(in_features=768, out_features=768, bias=True)
+          (proj_drop): Dropout(p=0.0, inplace=False)
+          (lora_A_k): ModuleList(
+            (0-9): 10 x Linear(in_features=768, out_features=10, bias=False)
+          )
+          (lora_B_k): ModuleList(
+            (0-9): 10 x Linear(in_features=10, out_features=768, bias=False)
+          )
+          (lora_A_v): ModuleList(
+            (0-9): 10 x Linear(in_features=768, out_features=10, bias=False)
+          )
+          (lora_B_v): ModuleList(
+            (0-9): 10 x Linear(in_features=10, out_features=768, bias=False)
+          )
+        )
+        (ls1): Identity()
+        (drop_path1): Identity()
+        (norm2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (mlp): Mlp(
+          (fc1): Linear(in_features=768, out_features=3072, bias=True)
+          (act): GELU(approximate='none')
+          (fc2): Linear(in_features=3072, out_features=768, bias=True)
+          (drop): Dropout(p=0.0, inplace=False)
+        )
+        (ls2): Identity()
+        (drop_path2): Identity()
+      )
+      (10): Block_LoRA(
+        (norm1): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (attn): Attention_LoRA(
+          (qkv): Linear(in_features=768, out_features=2304, bias=True)
+          (attn_drop): Dropout(p=0.0, inplace=False)
+          (proj): Linear(in_features=768, out_features=768, bias=True)
+          (proj_drop): Dropout(p=0.0, inplace=False)
+          (lora_A_k): ModuleList(
+            (0-9): 10 x Linear(in_features=768, out_features=10, bias=False)
+          )
+          (lora_B_k): ModuleList(
+            (0-9): 10 x Linear(in_features=10, out_features=768, bias=False)
+          )
+          (lora_A_v): ModuleList(
+            (0-9): 10 x Linear(in_features=768, out_features=10, bias=False)
+          )
+          (lora_B_v): ModuleList(
+            (0-9): 10 x Linear(in_features=10, out_features=768, bias=False)
+          )
+        )
+        (ls1): Identity()
+        (drop_path1): Identity()
+        (norm2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (mlp): Mlp(
+          (fc1): Linear(in_features=768, out_features=3072, bias=True)
+          (act): GELU(approximate='none')
+          (fc2): Linear(in_features=3072, out_features=768, bias=True)
+          (drop): Dropout(p=0.0, inplace=False)
+        )
+        (ls2): Identity()
+        (drop_path2): Identity()
+      )
+      (11): Block_LoRA(
+        (norm1): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (attn): Attention_LoRA(
+          (qkv): Linear(in_features=768, out_features=2304, bias=True)
+          (attn_drop): Dropout(p=0.0, inplace=False)
+          (proj): Linear(in_features=768, out_features=768, bias=True)
+          (proj_drop): Dropout(p=0.0, inplace=False)
+          (lora_A_k): ModuleList(
+            (0-9): 10 x Linear(in_features=768, out_features=10, bias=False)
+          )
+          (lora_B_k): ModuleList(
+            (0-9): 10 x Linear(in_features=10, out_features=768, bias=False)
+          )
+          (lora_A_v): ModuleList(
+            (0-9): 10 x Linear(in_features=768, out_features=10, bias=False)
+          )
+          (lora_B_v): ModuleList(
+            (0-9): 10 x Linear(in_features=10, out_features=768, bias=False)
+          )
+        )
+        (ls1): Identity()
+        (drop_path1): Identity()
+        (norm2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+        (mlp): Mlp(
+          (fc1): Linear(in_features=768, out_features=3072, bias=True)
+          (act): GELU(approximate='none')
+          (fc2): Linear(in_features=3072, out_features=768, bias=True)
+          (drop): Dropout(p=0.0, inplace=False)
+        )
+        (ls2): Identity()
+        (drop_path2): Identity()
+      )
+    )
+    (norm): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+  )
+)
+Trainable params in the model: 89638856
+================Task 0 Start!================
+Parameters to be updated: {'backbone.feat.blocks.0.attn.lora_B_k.0.weight', 'backbone.feat.blocks.11.attn.lora_B_v.0.weight', 'backbone.feat.blocks.5.attn.lora_B_k.0.weight', 'backbone.feat.blocks.4.attn.lora_B_k.0.weight', 'backbone.feat.blocks.7.attn.lora_B_k.0.weight', 'backbone.feat.blocks.1.attn.lora_B_k.0.weight', 'backbone.feat.blocks.6.attn.lora_B_v.0.weight', 'backbone.feat.blocks.11.attn.lora_B_k.0.weight', 'backbone.feat.blocks.0.attn.lora_B_v.0.weight', 'backbone.feat.blocks.4.attn.lora_B_v.0.weight', 'backbone.feat.blocks.8.attn.lora_B_v.0.weight', 'classifier_pool.0.bias', 'backbone.feat.blocks.1.attn.lora_B_v.0.weight', 'backbone.feat.blocks.3.attn.lora_B_k.0.weight', 'backbone.feat.blocks.8.attn.lora_B_k.0.weight', 'backbone.feat.blocks.6.attn.lora_B_k.0.weight', 'backbone.feat.blocks.7.attn.lora_B_v.0.weight', 'backbone.feat.blocks.2.attn.lora_B_k.0.weight', 'classifier_pool.0.weight', 'backbone.feat.blocks.2.attn.lora_B_v.0.weight', 'backbone.feat.blocks.3.attn.lora_B_v.0.weight', 'backbone.feat.blocks.10.attn.lora_B_k.0.weight', 'backbone.feat.blocks.10.attn.lora_B_v.0.weight', 'backbone.feat.blocks.9.attn.lora_B_k.0.weight', 'backbone.feat.blocks.9.attn.lora_B_v.0.weight', 'backbone.feat.blocks.5.attn.lora_B_v.0.weight'}
+================Task 0 Training!================
+The training samples number: 5000
+learning rate: [0.000498326211824246]
+================ Train on the train set ================
+Epoch [0/20] |	Loss: 0.9554 	Average Acc: 69.45 
+learning rate: [0.0005]
+================ Train on the train set ================
+Epoch [1/20] |	Loss: 0.3486 	Average Acc: 87.71 
+learning rate: [0.000498326211824246]
+================ Train on the train set ================
+Epoch [2/20] |	Loss: 0.3030 	Average Acc: 89.92 
+learning rate: [0.000493316053564413]
+================ Train on the train set ================
+Epoch [3/20] |	Loss: 0.2558 	Average Acc: 91.31 
+learning rate: [0.00048500306899511715]
+================ Train on the train set ================
+Epoch [4/20] |	Loss: 0.2610 	Average Acc: 90.86 
+learning rate: [0.0004734429148174674]
+================ Train on the train set ================
+Epoch [5/20] |	Loss: 0.2381 	Average Acc: 91.43 
+learning rate: [0.0004587129880289538]
+================ Train on the train set ================
+Epoch [6/20] |	Loss: 0.2267 	Average Acc: 92.40 
+learning rate: [0.0004409119077387294]
+================ Train on the train set ================
+Epoch [7/20] |	Loss: 0.2337 	Average Acc: 91.91 
+learning rate: [0.00042015885489761614]
+================ Train on the train set ================
+Epoch [8/20] |	Loss: 0.2051 	Average Acc: 92.85 
+learning rate: [0.00039659277436343896]
+================ Train on the train set ================
+Epoch [9/20] |	Loss: 0.2184 	Average Acc: 92.11 
+================ Test on the test set ================
+ * Average Acc: 96.27 Best acc 96.27
+ * Per-Task Acc:[96.27]
+learning rate: [0.0003703714446439856]
+================ Train on the train set ================
+Epoch [10/20] |	Loss: 0.2261 	Average Acc: 92.30 
+learning rate: [0.00034167042154580426]
+================ Train on the train set ================
+Epoch [11/20] |	Loss: 0.2085 	Average Acc: 93.05 
+learning rate: [0.00031068186280126976]
+================ Train on the train set ================
+Epoch [12/20] |	Loss: 0.2018 	Average Acc: 92.99 
+learning rate: [0.00027761324154322326]
+================ Train on the train set ================
+Epoch [13/20] |	Loss: 0.1595 	Average Acc: 94.59 
+learning rate: [0.00024268595724066564]
+================ Train on the train set ================
+Epoch [14/20] |	Loss: 0.1739 	Average Acc: 93.96 
+learning rate: [0.00020613385339550414]
+================ Train on the train set ================
+Epoch [15/20] |	Loss: 0.1681 	Average Acc: 94.86 
+learning rate: [0.00016820165192459852]
+================ Train on the train set ================
+Epoch [16/20] |	Loss: 0.1676 	Average Acc: 94.34 
+learning rate: [0.00012914331470915828]
+================ Train on the train set ================
+Epoch [17/20] |	Loss: 0.1788 	Average Acc: 94.04 
+learning rate: [8.922034328116642e-05]
+================ Train on the train set ================
+Epoch [18/20] |	Loss: 0.1602 	Average Acc: 94.28 
+learning rate: [4.8700028030691745e-05]
+================ Train on the train set ================
+Epoch [19/20] |	Loss: 0.1531 	Average Acc: 94.69 
+================ Test on the test set ================
+ * Average Acc: 96.97 Best acc 96.97
+ * Per-Task Acc:[96.97]
+Threshold:  0.95
+----------------------------------------
+Gradient Constraints Summary
+----------------------------------------
+Layer 1 : 6/768 type remove
+Layer 2 : 9/768 type remove
+Layer 3 : 11/768 type remove
+Layer 4 : 11/768 type remove
+Layer 5 : 13/768 type remove
+Layer 6 : 15/768 type remove
+Layer 7 : 14/768 type remove
+Layer 8 : 18/768 type remove
+Layer 9 : 24/768 type remove
+Layer 10 : 23/768 type remove
+Layer 11 : 8/768 type remove
+Layer 12 : 14/768 type remove
+----------------------------------------
+Layer 1 - Projection Matrix shape: torch.Size([768, 768])
+Layer 2 - Projection Matrix shape: torch.Size([768, 768])
+Layer 3 - Projection Matrix shape: torch.Size([768, 768])
+Layer 4 - Projection Matrix shape: torch.Size([768, 768])
+Layer 5 - Projection Matrix shape: torch.Size([768, 768])
+Layer 6 - Projection Matrix shape: torch.Size([768, 768])
+Layer 7 - Projection Matrix shape: torch.Size([768, 768])
+Layer 8 - Projection Matrix shape: torch.Size([768, 768])
+Layer 9 - Projection Matrix shape: torch.Size([768, 768])
+Layer 10 - Projection Matrix shape: torch.Size([768, 768])
+Layer 11 - Projection Matrix shape: torch.Size([768, 768])
+Layer 12 - Projection Matrix shape: torch.Size([768, 768])
+================Task 0 Testing!================
+ * Average Acc: 96.91 Best acc 96.97
+ * Per-Task Acc:[96.91]
+这是我个人设置的准确率记录
+ACC_1:  [96.91]
+平均ACC: 96.91
+================Task 1 Start!================
+Parameters to be updated: {'backbone.feat.blocks.4.attn.lora_B_v.1.weight', 'backbone.feat.blocks.7.attn.lora_B_k.1.weight', 'backbone.feat.blocks.1.attn.lora_B_v.1.weight', 'backbone.feat.blocks.0.attn.lora_B_v.1.weight', 'backbone.feat.blocks.7.attn.lora_B_v.1.weight', 'backbone.feat.blocks.6.attn.lora_B_k.1.weight', 'backbone.feat.blocks.0.attn.lora_B_k.1.weight', 'backbone.feat.blocks.2.attn.lora_B_k.1.weight', 'backbone.feat.blocks.11.attn.lora_B_k.1.weight', 'classifier_pool.1.weight', 'backbone.feat.blocks.9.attn.lora_B_v.1.weight', 'backbone.feat.blocks.10.attn.lora_B_v.1.weight', 'backbone.feat.blocks.11.attn.lora_B_v.1.weight', 'classifier_pool.1.bias', 'backbone.feat.blocks.3.attn.lora_B_k.1.weight', 'backbone.feat.blocks.5.attn.lora_B_v.1.weight', 'backbone.feat.blocks.2.attn.lora_B_v.1.weight', 'backbone.feat.blocks.10.attn.lora_B_k.1.weight', 'backbone.feat.blocks.9.attn.lora_B_k.1.weight', 'backbone.feat.blocks.6.attn.lora_B_v.1.weight', 'backbone.feat.blocks.4.attn.lora_B_k.1.weight', 'backbone.feat.blocks.8.attn.lora_B_v.1.weight', 'backbone.feat.blocks.3.attn.lora_B_v.1.weight', 'backbone.feat.blocks.8.attn.lora_B_k.1.weight', 'backbone.feat.blocks.5.attn.lora_B_k.1.weight', 'backbone.feat.blocks.1.attn.lora_B_k.1.weight'}
+================Task 1 Training!================
+The training samples number: 5000
+learning rate: [0.000498326211824246]
+================ Train on the train set ================
+Epoch [0/20] |	Loss: 0.7606 	Average Acc: 76.64 
+learning rate: [0.0005]
+================ Train on the train set ================
+Epoch [1/20] |	Loss: 0.1899 	Average Acc: 93.61 
+learning rate: [0.000498326211824246]
+================ Train on the train set ================
+Epoch [2/20] |	Loss: 0.1612 	Average Acc: 94.71 
+learning rate: [0.000493316053564413]
+================ Train on the train set ================
+Epoch [3/20] |	Loss: 0.1601 	Average Acc: 94.84 
+learning rate: [0.00048500306899511715]
+================ Train on the train set ================
+Epoch [4/20] |	Loss: 0.1421 	Average Acc: 95.53 
+learning rate: [0.0004734429148174674]
+================ Train on the train set ================
+Epoch [5/20] |	Loss: 0.1496 	Average Acc: 95.00 
+learning rate: [0.0004587129880289538]
+================ Train on the train set ================
+Epoch [6/20] |	Loss: 0.1408 	Average Acc: 95.55 
+learning rate: [0.0004409119077387294]
+================ Train on the train set ================
+Epoch [7/20] |	Loss: 0.1406 	Average Acc: 95.51 
+learning rate: [0.00042015885489761614]
+================ Train on the train set ================
+Epoch [8/20] |	Loss: 0.1186 	Average Acc: 95.96 
+learning rate: [0.00039659277436343896]
+================ Train on the train set ================
+Epoch [9/20] |	Loss: 0.1162 	Average Acc: 96.31 
+================ Test on the test set ================
+ * Average Acc: 96.92 Best acc 96.92
+ * Per-Task Acc:[96.08, 97.75]
+learning rate: [0.0003703714446439856]
+================ Train on the train set ================
+Epoch [10/20] |	Loss: 0.1146 	Average Acc: 96.17 
+learning rate: [0.00034167042154580426]
+================ Train on the train set ================
+Epoch [11/20] |	Loss: 0.1272 	Average Acc: 95.88 
+learning rate: [0.00031068186280126976]
+================ Train on the train set ================
+Epoch [12/20] |	Loss: 0.1223 	Average Acc: 96.11 
+learning rate: [0.00027761324154322326]
+================ Train on the train set ================
+Epoch [13/20] |	Loss: 0.0931 	Average Acc: 97.09 
+learning rate: [0.00024268595724066564]
+================ Train on the train set ================
+Epoch [14/20] |	Loss: 0.1046 	Average Acc: 96.50 
+learning rate: [0.00020613385339550414]
+================ Train on the train set ================
+Epoch [15/20] |	Loss: 0.1046 	Average Acc: 96.37 
+learning rate: [0.00016820165192459852]
+================ Train on the train set ================
+Epoch [16/20] |	Loss: 0.1086 	Average Acc: 96.68 
+learning rate: [0.00012914331470915828]
+================ Train on the train set ================
+Epoch [17/20] |	Loss: 0.0911 	Average Acc: 96.80 
+learning rate: [8.922034328116642e-05]
+================ Train on the train set ================
+Epoch [18/20] |	Loss: 0.0891 	Average Acc: 97.34 
+learning rate: [4.8700028030691745e-05]
+================ Train on the train set ================
+Epoch [19/20] |	Loss: 0.0904 	Average Acc: 96.91 
+================ Test on the test set ================
+ * Average Acc: 96.93 Best acc 96.93
+ * Per-Task Acc:[96.05, 97.81]
+Threshold:  0.955
+----------------------------------------
+Gradient Constraints Summary
+----------------------------------------
+Layer 1 : 7/768 type remove
+Layer 2 : 11/768 type remove
+Layer 3 : 15/768 type remove
+Layer 4 : 14/768 type remove
+Layer 5 : 20/768 type remove
+Layer 6 : 23/768 type remove
+Layer 7 : 22/768 type remove
+Layer 8 : 29/768 type remove
+Layer 9 : 47/768 type remove
+Layer 10 : 47/768 type remove
+Layer 11 : 18/768 type remove
+Layer 12 : 27/768 type remove
+----------------------------------------
+Layer 1 - Projection Matrix shape: torch.Size([768, 768])
+Layer 2 - Projection Matrix shape: torch.Size([768, 768])
+Layer 3 - Projection Matrix shape: torch.Size([768, 768])
+Layer 4 - Projection Matrix shape: torch.Size([768, 768])
+Layer 5 - Projection Matrix shape: torch.Size([768, 768])
+Layer 6 - Projection Matrix shape: torch.Size([768, 768])
+Layer 7 - Projection Matrix shape: torch.Size([768, 768])
+Layer 8 - Projection Matrix shape: torch.Size([768, 768])
+Layer 9 - Projection Matrix shape: torch.Size([768, 768])
+Layer 10 - Projection Matrix shape: torch.Size([768, 768])
+Layer 11 - Projection Matrix shape: torch.Size([768, 768])
+Layer 12 - Projection Matrix shape: torch.Size([768, 768])
+================Task 1 Testing!================
+ * Average Acc: 96.85 Best acc 96.93
+ * Per-Task Acc:[95.96, 97.74]
+这是我个人设置的准确率记录
+ACC_2:  [96.91, 96.85]
+平均ACC: 96.88
+================Task 2 Start!================
+Parameters to be updated: {'backbone.feat.blocks.3.attn.lora_B_k.2.weight', 'backbone.feat.blocks.1.attn.lora_B_v.2.weight', 'backbone.feat.blocks.0.attn.lora_B_v.2.weight', 'backbone.feat.blocks.11.attn.lora_B_v.2.weight', 'backbone.feat.blocks.5.attn.lora_B_v.2.weight', 'backbone.feat.blocks.1.attn.lora_B_k.2.weight', 'backbone.feat.blocks.4.attn.lora_B_k.2.weight', 'backbone.feat.blocks.4.attn.lora_B_v.2.weight', 'backbone.feat.blocks.10.attn.lora_B_v.2.weight', 'backbone.feat.blocks.2.attn.lora_B_v.2.weight', 'backbone.feat.blocks.0.attn.lora_B_k.2.weight', 'backbone.feat.blocks.11.attn.lora_B_k.2.weight', 'backbone.feat.blocks.3.attn.lora_B_v.2.weight', 'backbone.feat.blocks.5.attn.lora_B_k.2.weight', 'backbone.feat.blocks.7.attn.lora_B_v.2.weight', 'backbone.feat.blocks.7.attn.lora_B_k.2.weight', 'backbone.feat.blocks.2.attn.lora_B_k.2.weight', 'backbone.feat.blocks.6.attn.lora_B_k.2.weight', 'backbone.feat.blocks.10.attn.lora_B_k.2.weight', 'classifier_pool.2.weight', 'backbone.feat.blocks.8.attn.lora_B_v.2.weight', 'backbone.feat.blocks.9.attn.lora_B_k.2.weight', 'backbone.feat.blocks.9.attn.lora_B_v.2.weight', 'backbone.feat.blocks.6.attn.lora_B_v.2.weight', 'backbone.feat.blocks.8.attn.lora_B_k.2.weight', 'classifier_pool.2.bias'}
+================Task 2 Training!================
+The training samples number: 5000
+learning rate: [0.000498326211824246]
+================ Train on the train set ================
+Epoch [0/20] |	Loss: 0.6713 	Average Acc: 79.65 
+learning rate: [0.0005]
+================ Train on the train set ================
+Epoch [1/20] |	Loss: 0.1952 	Average Acc: 94.10 
+learning rate: [0.000498326211824246]
+================ Train on the train set ================
+Epoch [2/20] |	Loss: 0.1582 	Average Acc: 94.86 
+learning rate: [0.000493316053564413]
+================ Train on the train set ================
+Epoch [3/20] |	Loss: 0.1453 	Average Acc: 95.39 
+learning rate: [0.00048500306899511715]
+================ Train on the train set ================
+Epoch [4/20] |	Loss: 0.1492 	Average Acc: 94.98 
+learning rate: [0.0004734429148174674]
+================ Train on the train set ================
+Epoch [5/20] |	Loss: 0.1363 	Average Acc: 95.31 
+learning rate: [0.0004587129880289538]
+================ Train on the train set ================
+Epoch [6/20] |	Loss: 0.1466 	Average Acc: 95.31 
+learning rate: [0.0004409119077387294]
+================ Train on the train set ================
+Epoch [7/20] |	Loss: 0.1221 	Average Acc: 96.11 
+learning rate: [0.00042015885489761614]
+================ Train on the train set ================
+Epoch [8/20] |	Loss: 0.1267 	Average Acc: 96.15 
+learning rate: [0.00039659277436343896]
+================ Train on the train set ================
+Epoch [9/20] |	Loss: 0.1294 	Average Acc: 96.31 
+================ Test on the test set ================
+ * Average Acc: 95.69 Best acc 95.69
+ * Per-Task Acc:[95.3, 97.39, 94.37]
+learning rate: [0.0003703714446439856]
+================ Train on the train set ================
+Epoch [10/20] |	Loss: 0.1242 	Average Acc: 96.09 
+learning rate: [0.00034167042154580426]
+================ Train on the train set ================
+Epoch [11/20] |	Loss: 0.1192 	Average Acc: 96.07 
+learning rate: [0.00031068186280126976]
+================ Train on the train set ================
+Epoch [12/20] |	Loss: 0.1149 	Average Acc: 96.33 
+learning rate: [0.00027761324154322326]
+================ Train on the train set ================
+Epoch [13/20] |	Loss: 0.1155 	Average Acc: 96.27 
+learning rate: [0.00024268595724066564]
+================ Train on the train set ================
+Epoch [14/20] |	Loss: 0.1079 	Average Acc: 96.54 
+learning rate: [0.00020613385339550414]
+================ Train on the train set ================
+Epoch [15/20] |	Loss: 0.1086 	Average Acc: 96.41 
+learning rate: [0.00016820165192459852]
+================ Train on the train set ================
+Epoch [16/20] |	Loss: 0.0990 	Average Acc: 97.23 
+learning rate: [0.00012914331470915828]
+================ Train on the train set ================
+Epoch [17/20] |	Loss: 0.1078 	Average Acc: 96.43 
+learning rate: [8.922034328116642e-05]
+================ Train on the train set ================
+Epoch [18/20] |	Loss: 0.1282 	Average Acc: 96.13 
+learning rate: [4.8700028030691745e-05]
+================ Train on the train set ================
+Epoch [19/20] |	Loss: 0.0916 	Average Acc: 97.11 
+================ Test on the test set ================
+ * Average Acc: 96.30 Best acc 96.30
+ * Per-Task Acc:[94.52, 97.27, 97.12]
+Threshold:  0.96
+Skip Updating DualGPM for layer: 1
+----------------------------------------
+Gradient Constraints Summary
+----------------------------------------
+Layer 1 : 7/768 type remove
+Layer 2 : 12/768 type remove
+Layer 3 : 16/768 type remove
+Layer 4 : 16/768 type remove
+Layer 5 : 22/768 type remove
+Layer 6 : 28/768 type remove
+Layer 7 : 28/768 type remove
+Layer 8 : 39/768 type remove
+Layer 9 : 60/768 type remove
+Layer 10 : 65/768 type remove
+Layer 11 : 26/768 type remove
+Layer 12 : 40/768 type remove
+----------------------------------------
+Layer 1 - Projection Matrix shape: torch.Size([768, 768])
+Layer 2 - Projection Matrix shape: torch.Size([768, 768])
+Layer 3 - Projection Matrix shape: torch.Size([768, 768])
+Layer 4 - Projection Matrix shape: torch.Size([768, 768])
+Layer 5 - Projection Matrix shape: torch.Size([768, 768])
+Layer 6 - Projection Matrix shape: torch.Size([768, 768])
+Layer 7 - Projection Matrix shape: torch.Size([768, 768])
+Layer 8 - Projection Matrix shape: torch.Size([768, 768])
+Layer 9 - Projection Matrix shape: torch.Size([768, 768])
+Layer 10 - Projection Matrix shape: torch.Size([768, 768])
+Layer 11 - Projection Matrix shape: torch.Size([768, 768])
+Layer 12 - Projection Matrix shape: torch.Size([768, 768])
+================Task 2 Testing!================
+ * Average Acc: 96.28 Best acc 96.30
+ * Per-Task Acc:[94.49, 97.22, 97.12]
+这是我个人设置的准确率记录
+ACC_3:  [96.91, 96.85, 96.28]
+平均ACC: 96.67999999999999
+================Task 3 Start!================
+Parameters to be updated: {'backbone.feat.blocks.2.attn.lora_B_v.3.weight', 'backbone.feat.blocks.11.attn.lora_B_v.3.weight', 'backbone.feat.blocks.2.attn.lora_B_k.3.weight', 'backbone.feat.blocks.5.attn.lora_B_v.3.weight', 'backbone.feat.blocks.6.attn.lora_B_k.3.weight', 'backbone.feat.blocks.8.attn.lora_B_v.3.weight', 'backbone.feat.blocks.1.attn.lora_B_k.3.weight', 'backbone.feat.blocks.4.attn.lora_B_v.3.weight', 'backbone.feat.blocks.1.attn.lora_B_v.3.weight', 'backbone.feat.blocks.9.attn.lora_B_v.3.weight', 'backbone.feat.blocks.9.attn.lora_B_k.3.weight', 'backbone.feat.blocks.7.attn.lora_B_k.3.weight', 'classifier_pool.3.weight', 'classifier_pool.3.bias', 'backbone.feat.blocks.0.attn.lora_B_k.3.weight', 'backbone.feat.blocks.11.attn.lora_B_k.3.weight', 'backbone.feat.blocks.4.attn.lora_B_k.3.weight', 'backbone.feat.blocks.6.attn.lora_B_v.3.weight', 'backbone.feat.blocks.8.attn.lora_B_k.3.weight', 'backbone.feat.blocks.0.attn.lora_B_v.3.weight', 'backbone.feat.blocks.3.attn.lora_B_k.3.weight', 'backbone.feat.blocks.7.attn.lora_B_v.3.weight', 'backbone.feat.blocks.5.attn.lora_B_k.3.weight', 'backbone.feat.blocks.3.attn.lora_B_v.3.weight', 'backbone.feat.blocks.10.attn.lora_B_v.3.weight', 'backbone.feat.blocks.10.attn.lora_B_k.3.weight'}
+================Task 3 Training!================
+The training samples number: 5000
+learning rate: [0.000498326211824246]
+================ Train on the train set ================
+Epoch [0/20] |	Loss: 0.7069 	Average Acc: 77.97 
+learning rate: [0.0005]
+================ Train on the train set ================
+Epoch [1/20] |	Loss: 0.2149 	Average Acc: 92.52 
+learning rate: [0.000498326211824246]
+================ Train on the train set ================
+Epoch [2/20] |	Loss: 0.1949 	Average Acc: 93.79 
+learning rate: [0.000493316053564413]
+================ Train on the train set ================
+Epoch [3/20] |	Loss: 0.1945 	Average Acc: 93.55 
+learning rate: [0.00048500306899511715]
+================ Train on the train set ================
+Epoch [4/20] |	Loss: 0.1629 	Average Acc: 94.43 
+learning rate: [0.0004734429148174674]
+================ Train on the train set ================
+Epoch [5/20] |	Loss: 0.1659 	Average Acc: 94.32 
+learning rate: [0.0004587129880289538]
+================ Train on the train set ================
+Epoch [6/20] |	Loss: 0.1596 	Average Acc: 94.71 
+learning rate: [0.0004409119077387294]
+================ Train on the train set ================
+Epoch [7/20] |	Loss: 0.1779 	Average Acc: 94.61 
+learning rate: [0.00042015885489761614]
+================ Train on the train set ================
+Epoch [8/20] |	Loss: 0.1490 	Average Acc: 94.88 
+learning rate: [0.00039659277436343896]
+================ Train on the train set ================
+Epoch [9/20] |	Loss: 0.1493 	Average Acc: 94.94 
+================ Test on the test set ================
+ * Average Acc: 92.98 Best acc 92.98
+ * Per-Task Acc:[94.42, 95.96, 94.49, 87.06]
+learning rate: [0.0003703714446439856]
+================ Train on the train set ================
+Epoch [10/20] |	Loss: 0.1566 	Average Acc: 94.61 
+learning rate: [0.00034167042154580426]
+================ Train on the train set ================
+Epoch [11/20] |	Loss: 0.1523 	Average Acc: 94.82 
+learning rate: [0.00031068186280126976]
+================ Train on the train set ================
+Epoch [12/20] |	Loss: 0.1387 	Average Acc: 95.23 
+learning rate: [0.00027761324154322326]
+================ Train on the train set ================
+Epoch [13/20] |	Loss: 0.1340 	Average Acc: 95.57 
+learning rate: [0.00024268595724066564]
+================ Train on the train set ================
+Epoch [14/20] |	Loss: 0.1369 	Average Acc: 95.59 
+learning rate: [0.00020613385339550414]
+================ Train on the train set ================
+Epoch [15/20] |	Loss: 0.1282 	Average Acc: 95.66 
+learning rate: [0.00016820165192459852]
+================ Train on the train set ================
+Epoch [16/20] |	Loss: 0.1304 	Average Acc: 95.47 
+learning rate: [0.00012914331470915828]
+================ Train on the train set ================
+Epoch [17/20] |	Loss: 0.1325 	Average Acc: 95.80 
+learning rate: [8.922034328116642e-05]
+================ Train on the train set ================
+Epoch [18/20] |	Loss: 0.1334 	Average Acc: 95.64 
+learning rate: [4.8700028030691745e-05]
+================ Train on the train set ================
+Epoch [19/20] |	Loss: 0.1298 	Average Acc: 95.51 
+================ Test on the test set ================
+ * Average Acc: 93.35 Best acc 93.35
+ * Per-Task Acc:[94.32, 96.32, 94.22, 88.52]
+Threshold:  0.965
+Skip Updating DualGPM for layer: 1
+Skip Updating DualGPM for layer: 2
+----------------------------------------
+Gradient Constraints Summary
+----------------------------------------
+Layer 1 : 7/768 type remove
+Layer 2 : 12/768 type remove
+Layer 3 : 18/768 type remove
+Layer 4 : 19/768 type remove
+Layer 5 : 26/768 type remove
+Layer 6 : 33/768 type remove
+Layer 7 : 36/768 type remove
+Layer 8 : 51/768 type remove
+Layer 9 : 77/768 type remove
+Layer 10 : 80/768 type remove
+Layer 11 : 34/768 type remove
+Layer 12 : 50/768 type remove
+----------------------------------------
+Layer 1 - Projection Matrix shape: torch.Size([768, 768])
+Layer 2 - Projection Matrix shape: torch.Size([768, 768])
+Layer 3 - Projection Matrix shape: torch.Size([768, 768])
+Layer 4 - Projection Matrix shape: torch.Size([768, 768])
+Layer 5 - Projection Matrix shape: torch.Size([768, 768])
+Layer 6 - Projection Matrix shape: torch.Size([768, 768])
+Layer 7 - Projection Matrix shape: torch.Size([768, 768])
+Layer 8 - Projection Matrix shape: torch.Size([768, 768])
+Layer 9 - Projection Matrix shape: torch.Size([768, 768])
+Layer 10 - Projection Matrix shape: torch.Size([768, 768])
+Layer 11 - Projection Matrix shape: torch.Size([768, 768])
+Layer 12 - Projection Matrix shape: torch.Size([768, 768])
+================Task 3 Testing!================
+ * Average Acc: 93.34 Best acc 93.35
+ * Per-Task Acc:[94.39, 96.32, 94.22, 88.43]
+这是我个人设置的准确率记录
+ACC_4:  [96.91, 96.85, 96.28, 93.34]
+平均ACC: 95.845
+================Task 4 Start!================
+Parameters to be updated: {'backbone.feat.blocks.10.attn.lora_B_k.4.weight', 'backbone.feat.blocks.8.attn.lora_B_k.4.weight', 'backbone.feat.blocks.2.attn.lora_B_v.4.weight', 'backbone.feat.blocks.8.attn.lora_B_v.4.weight', 'backbone.feat.blocks.6.attn.lora_B_v.4.weight', 'backbone.feat.blocks.7.attn.lora_B_k.4.weight', 'backbone.feat.blocks.2.attn.lora_B_k.4.weight', 'classifier_pool.4.bias', 'backbone.feat.blocks.4.attn.lora_B_v.4.weight', 'backbone.feat.blocks.3.attn.lora_B_k.4.weight', 'backbone.feat.blocks.11.attn.lora_B_k.4.weight', 'backbone.feat.blocks.5.attn.lora_B_k.4.weight', 'backbone.feat.blocks.6.attn.lora_B_k.4.weight', 'backbone.feat.blocks.1.attn.lora_B_k.4.weight', 'backbone.feat.blocks.0.attn.lora_B_k.4.weight', 'backbone.feat.blocks.9.attn.lora_B_v.4.weight', 'backbone.feat.blocks.0.attn.lora_B_v.4.weight', 'backbone.feat.blocks.7.attn.lora_B_v.4.weight', 'backbone.feat.blocks.4.attn.lora_B_k.4.weight', 'backbone.feat.blocks.5.attn.lora_B_v.4.weight', 'classifier_pool.4.weight', 'backbone.feat.blocks.9.attn.lora_B_k.4.weight', 'backbone.feat.blocks.11.attn.lora_B_v.4.weight', 'backbone.feat.blocks.1.attn.lora_B_v.4.weight', 'backbone.feat.blocks.10.attn.lora_B_v.4.weight', 'backbone.feat.blocks.3.attn.lora_B_v.4.weight'}
+================Task 4 Training!================
+The training samples number: 5000
+learning rate: [0.000498326211824246]
+================ Train on the train set ================
+Epoch [0/20] |	Loss: 0.7493 	Average Acc: 78.32 
+learning rate: [0.0005]
+================ Train on the train set ================
+Epoch [1/20] |	Loss: 0.2361 	Average Acc: 92.13 
+learning rate: [0.000498326211824246]
+================ Train on the train set ================
+Epoch [2/20] |	Loss: 0.2072 	Average Acc: 93.22 
+learning rate: [0.000493316053564413]
+================ Train on the train set ================
+Epoch [3/20] |	Loss: 0.1736 	Average Acc: 94.38 
+learning rate: [0.00048500306899511715]
+================ Train on the train set ================
+Epoch [4/20] |	Loss: 0.1667 	Average Acc: 94.61 
+learning rate: [0.0004734429148174674]
+================ Train on the train set ================
+Epoch [5/20] |	Loss: 0.1582 	Average Acc: 95.04 
+learning rate: [0.0004587129880289538]
+================ Train on the train set ================
+Epoch [6/20] |	Loss: 0.1343 	Average Acc: 95.68 
+learning rate: [0.0004409119077387294]
+================ Train on the train set ================
+Epoch [7/20] |	Loss: 0.1452 	Average Acc: 95.12 
+learning rate: [0.00042015885489761614]
+================ Train on the train set ================
+Epoch [8/20] |	Loss: 0.1248 	Average Acc: 95.92 
+learning rate: [0.00039659277436343896]
+================ Train on the train set ================
+Epoch [9/20] |	Loss: 0.1468 	Average Acc: 95.31 
+================ Test on the test set ================
+ * Average Acc: 93.38 Best acc 93.38
+ * Per-Task Acc:[93.96, 95.44, 93.64, 88.72, 95.17]
+learning rate: [0.0003703714446439856]
+================ Train on the train set ================
+Epoch [10/20] |	Loss: 0.1536 	Average Acc: 95.02 
+learning rate: [0.00034167042154580426]
+================ Train on the train set ================
+Epoch [11/20] |	Loss: 0.1273 	Average Acc: 95.78 
+learning rate: [0.00031068186280126976]
+================ Train on the train set ================
+Epoch [12/20] |	Loss: 0.1466 	Average Acc: 95.00 
+learning rate: [0.00027761324154322326]
+================ Train on the train set ================
+Epoch [13/20] |	Loss: 0.1301 	Average Acc: 95.78 
+learning rate: [0.00024268595724066564]
+================ Train on the train set ================
+Epoch [14/20] |	Loss: 0.1199 	Average Acc: 96.11 
+learning rate: [0.00020613385339550414]
+================ Train on the train set ================
+Epoch [15/20] |	Loss: 0.1410 	Average Acc: 95.35 
+learning rate: [0.00016820165192459852]
+================ Train on the train set ================
+Epoch [16/20] |	Loss: 0.1394 	Average Acc: 95.29 
+learning rate: [0.00012914331470915828]
+================ Train on the train set ================
+Epoch [17/20] |	Loss: 0.1116 	Average Acc: 96.39 
+learning rate: [8.922034328116642e-05]
+================ Train on the train set ================
+Epoch [18/20] |	Loss: 0.1021 	Average Acc: 96.89 
+learning rate: [4.8700028030691745e-05]
+================ Train on the train set ================
+Epoch [19/20] |	Loss: 0.1228 	Average Acc: 95.55 
+================ Test on the test set ================
+ * Average Acc: 93.54 Best acc 93.54
+ * Per-Task Acc:[93.91, 94.96, 93.34, 89.14, 96.37]
+Threshold:  0.97
+Skip Updating DualGPM for layer: 1
+----------------------------------------
+Gradient Constraints Summary
+----------------------------------------
+Layer 1 : 7/768 type remove
+Layer 2 : 13/768 type remove
+Layer 3 : 19/768 type remove
+Layer 4 : 21/768 type remove
+Layer 5 : 30/768 type remove
+Layer 6 : 38/768 type remove
+Layer 7 : 44/768 type remove
+Layer 8 : 65/768 type remove
+Layer 9 : 106/768 type remove
+Layer 10 : 112/768 type remove
+Layer 11 : 51/768 type remove
+Layer 12 : 72/768 type remove
+----------------------------------------
+Layer 1 - Projection Matrix shape: torch.Size([768, 768])
+Layer 2 - Projection Matrix shape: torch.Size([768, 768])
+Layer 3 - Projection Matrix shape: torch.Size([768, 768])
+Layer 4 - Projection Matrix shape: torch.Size([768, 768])
+Layer 5 - Projection Matrix shape: torch.Size([768, 768])
+Layer 6 - Projection Matrix shape: torch.Size([768, 768])
+Layer 7 - Projection Matrix shape: torch.Size([768, 768])
+Layer 8 - Projection Matrix shape: torch.Size([768, 768])
+Layer 9 - Projection Matrix shape: torch.Size([768, 768])
+Layer 10 - Projection Matrix shape: torch.Size([768, 768])
+Layer 11 - Projection Matrix shape: torch.Size([768, 768])
+Layer 12 - Projection Matrix shape: torch.Size([768, 768])
+================Task 4 Testing!================
+ * Average Acc: 93.54 Best acc 93.54
+ * Per-Task Acc:[93.89, 95.0, 93.34, 89.14, 96.35]
+这是我个人设置的准确率记录
+ACC_5:  [96.91, 96.85, 96.28, 93.34, 93.54]
+平均ACC: 95.384
+================Task 5 Start!================
+Parameters to be updated: {'backbone.feat.blocks.9.attn.lora_B_k.5.weight', 'backbone.feat.blocks.10.attn.lora_B_k.5.weight', 'backbone.feat.blocks.4.attn.lora_B_k.5.weight', 'backbone.feat.blocks.0.attn.lora_B_v.5.weight', 'backbone.feat.blocks.6.attn.lora_B_k.5.weight', 'backbone.feat.blocks.5.attn.lora_B_k.5.weight', 'classifier_pool.5.weight', 'backbone.feat.blocks.11.attn.lora_B_v.5.weight', 'backbone.feat.blocks.8.attn.lora_B_k.5.weight', 'backbone.feat.blocks.3.attn.lora_B_v.5.weight', 'backbone.feat.blocks.10.attn.lora_B_v.5.weight', 'backbone.feat.blocks.8.attn.lora_B_v.5.weight', 'backbone.feat.blocks.7.attn.lora_B_v.5.weight', 'backbone.feat.blocks.11.attn.lora_B_k.5.weight', 'classifier_pool.5.bias', 'backbone.feat.blocks.0.attn.lora_B_k.5.weight', 'backbone.feat.blocks.6.attn.lora_B_v.5.weight', 'backbone.feat.blocks.2.attn.lora_B_k.5.weight', 'backbone.feat.blocks.3.attn.lora_B_k.5.weight', 'backbone.feat.blocks.1.attn.lora_B_k.5.weight', 'backbone.feat.blocks.9.attn.lora_B_v.5.weight', 'backbone.feat.blocks.2.attn.lora_B_v.5.weight', 'backbone.feat.blocks.4.attn.lora_B_v.5.weight', 'backbone.feat.blocks.5.attn.lora_B_v.5.weight', 'backbone.feat.blocks.1.attn.lora_B_v.5.weight', 'backbone.feat.blocks.7.attn.lora_B_k.5.weight'}
+================Task 5 Training!================
+The training samples number: 5000
+learning rate: [0.000498326211824246]
+================ Train on the train set ================
+Epoch [0/20] |	Loss: 0.6419 	Average Acc: 80.04 
+learning rate: [0.0005]
+================ Train on the train set ================
+Epoch [1/20] |	Loss: 0.2247 	Average Acc: 92.89 
+learning rate: [0.000498326211824246]
+================ Train on the train set ================
+Epoch [2/20] |	Loss: 0.1946 	Average Acc: 93.91 
+learning rate: [0.000493316053564413]
+================ Train on the train set ================
+Epoch [3/20] |	Loss: 0.1739 	Average Acc: 94.39 
+learning rate: [0.00048500306899511715]
+================ Train on the train set ================
+Epoch [4/20] |	Loss: 0.1605 	Average Acc: 94.67 
+learning rate: [0.0004734429148174674]
+================ Train on the train set ================
+Epoch [5/20] |	Loss: 0.1460 	Average Acc: 95.16 
+learning rate: [0.0004587129880289538]
+================ Train on the train set ================
+Epoch [6/20] |	Loss: 0.1530 	Average Acc: 95.39 
+learning rate: [0.0004409119077387294]
+================ Train on the train set ================
+Epoch [7/20] |	Loss: 0.1392 	Average Acc: 95.31 
+learning rate: [0.00042015885489761614]
+================ Train on the train set ================
+Epoch [8/20] |	Loss: 0.1399 	Average Acc: 95.72 
+learning rate: [0.00039659277436343896]
+================ Train on the train set ================
+Epoch [9/20] |	Loss: 0.1385 	Average Acc: 95.90 
+================ Test on the test set ================
+ * Average Acc: 91.38 Best acc 91.38
+ * Per-Task Acc:[88.84, 94.95, 93.44, 87.67, 95.98, 87.39]
+learning rate: [0.0003703714446439856]
+================ Train on the train set ================
+Epoch [10/20] |	Loss: 0.1241 	Average Acc: 95.96 
+learning rate: [0.00034167042154580426]
+================ Train on the train set ================
+Epoch [11/20] |	Loss: 0.1272 	Average Acc: 95.78 
+learning rate: [0.00031068186280126976]
+================ Train on the train set ================
+Epoch [12/20] |	Loss: 0.1384 	Average Acc: 95.31 
+learning rate: [0.00027761324154322326]
+================ Train on the train set ================
+Epoch [13/20] |	Loss: 0.1171 	Average Acc: 96.11 
+learning rate: [0.00024268595724066564]
+================ Train on the train set ================
+Epoch [14/20] |	Loss: 0.1237 	Average Acc: 95.96 
+learning rate: [0.00020613385339550414]
+================ Train on the train set ================
+Epoch [15/20] |	Loss: 0.1170 	Average Acc: 96.13 
+learning rate: [0.00016820165192459852]
+================ Train on the train set ================
+Epoch [16/20] |	Loss: 0.1246 	Average Acc: 96.33 
+learning rate: [0.00012914331470915828]
+================ Train on the train set ================
+Epoch [17/20] |	Loss: 0.1287 	Average Acc: 95.88 
+learning rate: [8.922034328116642e-05]
+================ Train on the train set ================
+Epoch [18/20] |	Loss: 0.1199 	Average Acc: 96.09 
+learning rate: [4.8700028030691745e-05]
+================ Train on the train set ================
+Epoch [19/20] |	Loss: 0.1096 	Average Acc: 96.15 
+================ Test on the test set ================
+ * Average Acc: 91.93 Best acc 91.93
+ * Per-Task Acc:[88.79, 94.28, 93.35, 87.23, 95.83, 92.08]
+Threshold:  0.975
+Skip Updating DualGPM for layer: 1
+----------------------------------------
+Gradient Constraints Summary
+----------------------------------------
+Layer 1 : 7/768 type remove
+Layer 2 : 14/768 type remove
+Layer 3 : 20/768 type remove
+Layer 4 : 25/768 type remove
+Layer 5 : 35/768 type remove
+Layer 6 : 43/768 type remove
+Layer 7 : 51/768 type remove
+Layer 8 : 78/768 type remove
+Layer 9 : 131/768 type remove
+Layer 10 : 147/768 type remove
+Layer 11 : 73/768 type remove
+Layer 12 : 94/768 type remove
+----------------------------------------
+Layer 1 - Projection Matrix shape: torch.Size([768, 768])
+Layer 2 - Projection Matrix shape: torch.Size([768, 768])
+Layer 3 - Projection Matrix shape: torch.Size([768, 768])
+Layer 4 - Projection Matrix shape: torch.Size([768, 768])
+Layer 5 - Projection Matrix shape: torch.Size([768, 768])
+Layer 6 - Projection Matrix shape: torch.Size([768, 768])
+Layer 7 - Projection Matrix shape: torch.Size([768, 768])
+Layer 8 - Projection Matrix shape: torch.Size([768, 768])
+Layer 9 - Projection Matrix shape: torch.Size([768, 768])
+Layer 10 - Projection Matrix shape: torch.Size([768, 768])
+Layer 11 - Projection Matrix shape: torch.Size([768, 768])
+Layer 12 - Projection Matrix shape: torch.Size([768, 768])
+================Task 5 Testing!================
+ * Average Acc: 91.95 Best acc 91.95
+ * Per-Task Acc:[88.95, 94.34, 93.4, 87.21, 95.67, 92.1]
+这是我个人设置的准确率记录
+ACC_6:  [96.91, 96.85, 96.28, 93.34, 93.54, 91.95]
+平均ACC: 94.81166666666667
+================Task 6 Start!================
+Parameters to be updated: {'backbone.feat.blocks.1.attn.lora_B_k.6.weight', 'backbone.feat.blocks.11.attn.lora_B_k.6.weight', 'backbone.feat.blocks.4.attn.lora_B_v.6.weight', 'classifier_pool.6.weight', 'backbone.feat.blocks.2.attn.lora_B_k.6.weight', 'backbone.feat.blocks.8.attn.lora_B_v.6.weight', 'classifier_pool.6.bias', 'backbone.feat.blocks.6.attn.lora_B_v.6.weight', 'backbone.feat.blocks.7.attn.lora_B_v.6.weight', 'backbone.feat.blocks.9.attn.lora_B_v.6.weight', 'backbone.feat.blocks.0.attn.lora_B_v.6.weight', 'backbone.feat.blocks.7.attn.lora_B_k.6.weight', 'backbone.feat.blocks.6.attn.lora_B_k.6.weight', 'backbone.feat.blocks.10.attn.lora_B_v.6.weight', 'backbone.feat.blocks.5.attn.lora_B_k.6.weight', 'backbone.feat.blocks.1.attn.lora_B_v.6.weight', 'backbone.feat.blocks.3.attn.lora_B_v.6.weight', 'backbone.feat.blocks.8.attn.lora_B_k.6.weight', 'backbone.feat.blocks.2.attn.lora_B_v.6.weight', 'backbone.feat.blocks.5.attn.lora_B_v.6.weight', 'backbone.feat.blocks.11.attn.lora_B_v.6.weight', 'backbone.feat.blocks.3.attn.lora_B_k.6.weight', 'backbone.feat.blocks.10.attn.lora_B_k.6.weight', 'backbone.feat.blocks.9.attn.lora_B_k.6.weight', 'backbone.feat.blocks.0.attn.lora_B_k.6.weight', 'backbone.feat.blocks.4.attn.lora_B_k.6.weight'}
+================Task 6 Training!================
+The training samples number: 5000
+learning rate: [0.000498326211824246]
+================ Train on the train set ================
+Epoch [0/20] |	Loss: 0.6870 	Average Acc: 77.81 
+learning rate: [0.0005]
+================ Train on the train set ================
+Epoch [1/20] |	Loss: 0.2337 	Average Acc: 92.19 
+learning rate: [0.000498326211824246]
+================ Train on the train set ================
+Epoch [2/20] |	Loss: 0.1962 	Average Acc: 93.79 
+learning rate: [0.000493316053564413]
+================ Train on the train set ================
+Epoch [3/20] |	Loss: 0.1826 	Average Acc: 94.06 
+learning rate: [0.00048500306899511715]
+================ Train on the train set ================
+Epoch [4/20] |	Loss: 0.1746 	Average Acc: 94.38 
+learning rate: [0.0004734429148174674]
+================ Train on the train set ================
+Epoch [5/20] |	Loss: 0.1615 	Average Acc: 94.61 
+learning rate: [0.0004587129880289538]
+================ Train on the train set ================
+Epoch [6/20] |	Loss: 0.1537 	Average Acc: 94.90 
+learning rate: [0.0004409119077387294]
+================ Train on the train set ================
+Epoch [7/20] |	Loss: 0.1446 	Average Acc: 95.20 
+learning rate: [0.00042015885489761614]
+================ Train on the train set ================
+Epoch [8/20] |	Loss: 0.1410 	Average Acc: 95.23 
+learning rate: [0.00039659277436343896]
+================ Train on the train set ================
+Epoch [9/20] |	Loss: 0.1483 	Average Acc: 95.14 
+================ Test on the test set ================
+ * Average Acc: 90.44 Best acc 90.44
+ * Per-Task Acc:[83.15, 94.74, 93.11, 87.23, 94.81, 90.52, 89.54]
+learning rate: [0.0003703714446439856]
+================ Train on the train set ================
+Epoch [10/20] |	Loss: 0.1534 	Average Acc: 95.02 
+learning rate: [0.00034167042154580426]
+================ Train on the train set ================
+Epoch [11/20] |	Loss: 0.1311 	Average Acc: 95.62 
+learning rate: [0.00031068186280126976]
+================ Train on the train set ================
+Epoch [12/20] |	Loss: 0.1259 	Average Acc: 95.88 
+learning rate: [0.00027761324154322326]
+================ Train on the train set ================
+Epoch [13/20] |	Loss: 0.1276 	Average Acc: 95.66 
+learning rate: [0.00024268595724066564]
+================ Train on the train set ================
+Epoch [14/20] |	Loss: 0.1431 	Average Acc: 95.18 
+learning rate: [0.00020613385339550414]
+================ Train on the train set ================
+Epoch [15/20] |	Loss: 0.1184 	Average Acc: 96.05 
+learning rate: [0.00016820165192459852]
+================ Train on the train set ================
+Epoch [16/20] |	Loss: 0.1329 	Average Acc: 95.78 
+learning rate: [0.00012914331470915828]
+================ Train on the train set ================
+Epoch [17/20] |	Loss: 0.1310 	Average Acc: 95.66 
+learning rate: [8.922034328116642e-05]
+================ Train on the train set ================
+Epoch [18/20] |	Loss: 0.1131 	Average Acc: 96.31 
+learning rate: [4.8700028030691745e-05]
+================ Train on the train set ================
+Epoch [19/20] |	Loss: 0.1207 	Average Acc: 96.04 
+================ Test on the test set ================
+ * Average Acc: 90.47 Best acc 90.47
+ * Per-Task Acc:[82.2, 94.81, 93.11, 87.25, 94.68, 89.89, 91.37]
+Threshold:  0.98
+Skip Updating DualGPM for layer: 1
+----------------------------------------
+Gradient Constraints Summary
+----------------------------------------
+Layer 1 : 7/768 type remove
+Layer 2 : 15/768 type remove
+Layer 3 : 23/768 type remove
+Layer 4 : 31/768 type remove
+Layer 5 : 42/768 type remove
+Layer 6 : 54/768 type remove
+Layer 7 : 65/768 type remove
+Layer 8 : 99/768 type remove
+Layer 9 : 155/768 type remove
+Layer 10 : 169/768 type remove
+Layer 11 : 83/768 type remove
+Layer 12 : 111/768 type remove
+----------------------------------------
+Layer 1 - Projection Matrix shape: torch.Size([768, 768])
+Layer 2 - Projection Matrix shape: torch.Size([768, 768])
+Layer 3 - Projection Matrix shape: torch.Size([768, 768])
+Layer 4 - Projection Matrix shape: torch.Size([768, 768])
+Layer 5 - Projection Matrix shape: torch.Size([768, 768])
+Layer 6 - Projection Matrix shape: torch.Size([768, 768])
+Layer 7 - Projection Matrix shape: torch.Size([768, 768])
+Layer 8 - Projection Matrix shape: torch.Size([768, 768])
+Layer 9 - Projection Matrix shape: torch.Size([768, 768])
+Layer 10 - Projection Matrix shape: torch.Size([768, 768])
+Layer 11 - Projection Matrix shape: torch.Size([768, 768])
+Layer 12 - Projection Matrix shape: torch.Size([768, 768])
+================Task 6 Testing!================
+ * Average Acc: 90.49 Best acc 90.49
+ * Per-Task Acc:[82.45, 94.74, 93.29, 87.27, 94.5, 89.89, 91.26]
+这是我个人设置的准确率记录
+ACC_7:  [96.91, 96.85, 96.28, 93.34, 93.54, 91.95, 90.49]
+平均ACC: 94.19428571428571
+================Task 7 Start!================
+Parameters to be updated: {'backbone.feat.blocks.1.attn.lora_B_v.7.weight', 'backbone.feat.blocks.5.attn.lora_B_k.7.weight', 'backbone.feat.blocks.6.attn.lora_B_v.7.weight', 'backbone.feat.blocks.9.attn.lora_B_k.7.weight', 'backbone.feat.blocks.8.attn.lora_B_k.7.weight', 'backbone.feat.blocks.3.attn.lora_B_k.7.weight', 'backbone.feat.blocks.5.attn.lora_B_v.7.weight', 'backbone.feat.blocks.4.attn.lora_B_k.7.weight', 'backbone.feat.blocks.8.attn.lora_B_v.7.weight', 'backbone.feat.blocks.7.attn.lora_B_k.7.weight', 'backbone.feat.blocks.9.attn.lora_B_v.7.weight', 'backbone.feat.blocks.2.attn.lora_B_k.7.weight', 'classifier_pool.7.bias', 'backbone.feat.blocks.0.attn.lora_B_k.7.weight', 'backbone.feat.blocks.4.attn.lora_B_v.7.weight', 'backbone.feat.blocks.1.attn.lora_B_k.7.weight', 'backbone.feat.blocks.11.attn.lora_B_k.7.weight', 'backbone.feat.blocks.2.attn.lora_B_v.7.weight', 'backbone.feat.blocks.6.attn.lora_B_k.7.weight', 'backbone.feat.blocks.0.attn.lora_B_v.7.weight', 'backbone.feat.blocks.3.attn.lora_B_v.7.weight', 'backbone.feat.blocks.10.attn.lora_B_v.7.weight', 'backbone.feat.blocks.7.attn.lora_B_v.7.weight', 'backbone.feat.blocks.11.attn.lora_B_v.7.weight', 'classifier_pool.7.weight', 'backbone.feat.blocks.10.attn.lora_B_k.7.weight'}
+================Task 7 Training!================
+The training samples number: 5000
+learning rate: [0.000498326211824246]
+================ Train on the train set ================
+Epoch [0/20] |	Loss: 0.6415 	Average Acc: 80.23 
+learning rate: [0.0005]
+================ Train on the train set ================
+Epoch [1/20] |	Loss: 0.1945 	Average Acc: 93.50 
+learning rate: [0.000498326211824246]
+================ Train on the train set ================
+Epoch [2/20] |	Loss: 0.1686 	Average Acc: 94.45 
+learning rate: [0.000493316053564413]
+================ Train on the train set ================
+Epoch [3/20] |	Loss: 0.1795 	Average Acc: 94.06 
+learning rate: [0.00048500306899511715]
+================ Train on the train set ================
+Epoch [4/20] |	Loss: 0.1538 	Average Acc: 94.94 
+learning rate: [0.0004734429148174674]
+================ Train on the train set ================
+Epoch [5/20] |	Loss: 0.1503 	Average Acc: 94.98 
+learning rate: [0.0004587129880289538]
+================ Train on the train set ================
+Epoch [6/20] |	Loss: 0.1214 	Average Acc: 95.98 
+learning rate: [0.0004409119077387294]
+================ Train on the train set ================
+Epoch [7/20] |	Loss: 0.1285 	Average Acc: 95.84 
+learning rate: [0.00042015885489761614]
+================ Train on the train set ================
+Epoch [8/20] |	Loss: 0.1200 	Average Acc: 96.21 
+learning rate: [0.00039659277436343896]
+================ Train on the train set ================
+Epoch [9/20] |	Loss: 0.1278 	Average Acc: 95.72 
+================ Test on the test set ================
+ * Average Acc: 88.66 Best acc 88.66
+ * Per-Task Acc:[82.07, 94.32, 92.62, 86.55, 93.23, 89.23, 88.09, 83.21]
+learning rate: [0.0003703714446439856]
+================ Train on the train set ================
+Epoch [10/20] |	Loss: 0.1167 	Average Acc: 96.00 
+learning rate: [0.00034167042154580426]
+================ Train on the train set ================
+Epoch [11/20] |	Loss: 0.1268 	Average Acc: 95.82 
+learning rate: [0.00031068186280126976]
+================ Train on the train set ================
+Epoch [12/20] |	Loss: 0.1158 	Average Acc: 96.54 
+learning rate: [0.00027761324154322326]
+================ Train on the train set ================
+Epoch [13/20] |	Loss: 0.1108 	Average Acc: 96.33 
+learning rate: [0.00024268595724066564]
+================ Train on the train set ================
+Epoch [14/20] |	Loss: 0.1002 	Average Acc: 96.52 
+learning rate: [0.00020613385339550414]
+================ Train on the train set ================
+Epoch [15/20] |	Loss: 0.1412 	Average Acc: 95.55 
+learning rate: [0.00016820165192459852]
+================ Train on the train set ================
+Epoch [16/20] |	Loss: 0.1072 	Average Acc: 96.52 
+learning rate: [0.00012914331470915828]
+================ Train on the train set ================
+Epoch [17/20] |	Loss: 0.1082 	Average Acc: 96.29 
+learning rate: [8.922034328116642e-05]
+================ Train on the train set ================
+Epoch [18/20] |	Loss: 0.1041 	Average Acc: 96.48 
+learning rate: [4.8700028030691745e-05]
+================ Train on the train set ================
+Epoch [19/20] |	Loss: 0.1123 	Average Acc: 96.17 
+================ Test on the test set ================
+ * Average Acc: 88.88 Best acc 88.88
+ * Per-Task Acc:[81.97, 94.1, 93.32, 86.55, 92.67, 89.57, 88.33, 84.5]
+Threshold:  0.985
+----------------------------------------
+Gradient Constraints Summary
+----------------------------------------
+Layer 1 : 8/768 type remove
+Layer 2 : 18/768 type remove
+Layer 3 : 28/768 type remove
+Layer 4 : 36/768 type remove
+Layer 5 : 51/768 type remove
+Layer 6 : 71/768 type remove
+Layer 7 : 84/768 type remove
+Layer 8 : 130/768 type remove
+Layer 9 : 196/768 type remove
+Layer 10 : 218/768 type remove
+Layer 11 : 115/768 type remove
+Layer 12 : 144/768 type remove
+----------------------------------------
+Layer 1 - Projection Matrix shape: torch.Size([768, 768])
+Layer 2 - Projection Matrix shape: torch.Size([768, 768])
+Layer 3 - Projection Matrix shape: torch.Size([768, 768])
+Layer 4 - Projection Matrix shape: torch.Size([768, 768])
+Layer 5 - Projection Matrix shape: torch.Size([768, 768])
+Layer 6 - Projection Matrix shape: torch.Size([768, 768])
+Layer 7 - Projection Matrix shape: torch.Size([768, 768])
+Layer 8 - Projection Matrix shape: torch.Size([768, 768])
+Layer 9 - Projection Matrix shape: torch.Size([768, 768])
+Layer 10 - Projection Matrix shape: torch.Size([768, 768])
+Layer 11 - Projection Matrix shape: torch.Size([768, 768])
+Layer 12 - Projection Matrix shape: torch.Size([768, 768])
+================Task 7 Testing!================
+ * Average Acc: 88.85 Best acc 88.88
+ * Per-Task Acc:[82.04, 94.15, 93.3, 86.57, 92.71, 89.36, 88.28, 84.41]
+这是我个人设置的准确率记录
+ACC_8:  [96.91, 96.85, 96.28, 93.34, 93.54, 91.95, 90.49, 88.85]
+平均ACC: 93.52625
+================Task 8 Start!================
+Parameters to be updated: {'backbone.feat.blocks.8.attn.lora_B_v.8.weight', 'backbone.feat.blocks.8.attn.lora_B_k.8.weight', 'backbone.feat.blocks.4.attn.lora_B_v.8.weight', 'backbone.feat.blocks.0.attn.lora_B_k.8.weight', 'backbone.feat.blocks.9.attn.lora_B_v.8.weight', 'backbone.feat.blocks.10.attn.lora_B_v.8.weight', 'backbone.feat.blocks.3.attn.lora_B_k.8.weight', 'backbone.feat.blocks.7.attn.lora_B_k.8.weight', 'classifier_pool.8.weight', 'backbone.feat.blocks.2.attn.lora_B_k.8.weight', 'backbone.feat.blocks.0.attn.lora_B_v.8.weight', 'backbone.feat.blocks.1.attn.lora_B_v.8.weight', 'backbone.feat.blocks.11.attn.lora_B_k.8.weight', 'backbone.feat.blocks.6.attn.lora_B_v.8.weight', 'backbone.feat.blocks.11.attn.lora_B_v.8.weight', 'backbone.feat.blocks.5.attn.lora_B_v.8.weight', 'backbone.feat.blocks.5.attn.lora_B_k.8.weight', 'backbone.feat.blocks.6.attn.lora_B_k.8.weight', 'backbone.feat.blocks.10.attn.lora_B_k.8.weight', 'backbone.feat.blocks.7.attn.lora_B_v.8.weight', 'classifier_pool.8.bias', 'backbone.feat.blocks.3.attn.lora_B_v.8.weight', 'backbone.feat.blocks.2.attn.lora_B_v.8.weight', 'backbone.feat.blocks.1.attn.lora_B_k.8.weight', 'backbone.feat.blocks.4.attn.lora_B_k.8.weight', 'backbone.feat.blocks.9.attn.lora_B_k.8.weight'}
+================Task 8 Training!================
+The training samples number: 5000
+learning rate: [0.000498326211824246]
+================ Train on the train set ================
+Epoch [0/20] |	Loss: 0.7488 	Average Acc: 77.36 
+learning rate: [0.0005]
+================ Train on the train set ================
+Epoch [1/20] |	Loss: 0.2003 	Average Acc: 93.65 
+learning rate: [0.000498326211824246]
+================ Train on the train set ================
+Epoch [2/20] |	Loss: 0.1771 	Average Acc: 94.34 
+learning rate: [0.000493316053564413]
+================ Train on the train set ================
+Epoch [3/20] |	Loss: 0.1664 	Average Acc: 94.90 
+learning rate: [0.00048500306899511715]
+================ Train on the train set ================
+Epoch [4/20] |	Loss: 0.1488 	Average Acc: 95.21 
+learning rate: [0.0004734429148174674]
+================ Train on the train set ================
+Epoch [5/20] |	Loss: 0.1444 	Average Acc: 95.49 
+learning rate: [0.0004587129880289538]
+================ Train on the train set ================
+Epoch [6/20] |	Loss: 0.1285 	Average Acc: 95.94 
+learning rate: [0.0004409119077387294]
+================ Train on the train set ================
+Epoch [7/20] |	Loss: 0.1150 	Average Acc: 96.54 
+learning rate: [0.00042015885489761614]
+================ Train on the train set ================
+Epoch [8/20] |	Loss: 0.1561 	Average Acc: 95.21 
+learning rate: [0.00039659277436343896]
+================ Train on the train set ================
+Epoch [9/20] |	Loss: 0.1234 	Average Acc: 95.94 
+================ Test on the test set ================
+ * Average Acc: 87.92 Best acc 87.92
+ * Per-Task Acc:[80.26, 93.34, 92.89, 85.36, 92.44, 87.95, 87.3, 83.92, 87.87]
+learning rate: [0.0003703714446439856]
+================ Train on the train set ================
+Epoch [10/20] |	Loss: 0.1215 	Average Acc: 96.15 
+learning rate: [0.00034167042154580426]
+================ Train on the train set ================
+Epoch [11/20] |	Loss: 0.1132 	Average Acc: 96.17 
+learning rate: [0.00031068186280126976]
+================ Train on the train set ================
+Epoch [12/20] |	Loss: 0.1154 	Average Acc: 96.37 
+learning rate: [0.00027761324154322326]
+================ Train on the train set ================
+Epoch [13/20] |	Loss: 0.1130 	Average Acc: 96.62 
+learning rate: [0.00024268595724066564]
+================ Train on the train set ================
+Epoch [14/20] |	Loss: 0.1146 	Average Acc: 96.05 
+learning rate: [0.00020613385339550414]
+================ Train on the train set ================
+Epoch [15/20] |	Loss: 0.0947 	Average Acc: 96.99 
+learning rate: [0.00016820165192459852]
+================ Train on the train set ================
+Epoch [16/20] |	Loss: 0.0963 	Average Acc: 96.82 
+learning rate: [0.00012914331470915828]
+================ Train on the train set ================
+Epoch [17/20] |	Loss: 0.1083 	Average Acc: 96.54 
+learning rate: [8.922034328116642e-05]
+================ Train on the train set ================
+Epoch [18/20] |	Loss: 0.1158 	Average Acc: 96.25 
+learning rate: [4.8700028030691745e-05]
+================ Train on the train set ================
+Epoch [19/20] |	Loss: 0.1052 	Average Acc: 96.50 
+================ Test on the test set ================
+ * Average Acc: 87.68 Best acc 87.92
+ * Per-Task Acc:[79.91, 92.74, 92.28, 84.83, 92.06, 88.67, 85.8, 83.55, 89.31]
+Threshold:  0.99
+----------------------------------------
+Gradient Constraints Summary
+----------------------------------------
+Layer 1 : 9/768 type remove
+Layer 2 : 20/768 type remove
+Layer 3 : 34/768 type remove
+Layer 4 : 47/768 type remove
+Layer 5 : 65/768 type remove
+Layer 6 : 96/768 type remove
+Layer 7 : 123/768 type remove
+Layer 8 : 192/768 type remove
+Layer 9 : 277/768 type remove
+Layer 10 : 291/768 type remove
+Layer 11 : 187/768 type remove
+Layer 12 : 213/768 type remove
+----------------------------------------
+Layer 1 - Projection Matrix shape: torch.Size([768, 768])
+Layer 2 - Projection Matrix shape: torch.Size([768, 768])
+Layer 3 - Projection Matrix shape: torch.Size([768, 768])
+Layer 4 - Projection Matrix shape: torch.Size([768, 768])
+Layer 5 - Projection Matrix shape: torch.Size([768, 768])
+Layer 6 - Projection Matrix shape: torch.Size([768, 768])
+Layer 7 - Projection Matrix shape: torch.Size([768, 768])
+Layer 8 - Projection Matrix shape: torch.Size([768, 768])
+Layer 9 - Projection Matrix shape: torch.Size([768, 768])
+Layer 10 - Projection Matrix shape: torch.Size([768, 768])
+Layer 11 - Projection Matrix shape: torch.Size([768, 768])
+Layer 12 - Projection Matrix shape: torch.Size([768, 768])
+================Task 8 Testing!================
+ * Average Acc: 87.71 Best acc 87.92
+ * Per-Task Acc:[79.96, 92.86, 92.32, 84.94, 92.1, 88.69, 85.76, 83.46, 89.33]
+这是我个人设置的准确率记录
+ACC_9:  [96.91, 96.85, 96.28, 93.34, 93.54, 91.95, 90.49, 88.85, 87.71]
+平均ACC: 92.88000000000001
+================Task 9 Start!================
+Parameters to be updated: {'backbone.feat.blocks.2.attn.lora_B_k.9.weight', 'backbone.feat.blocks.5.attn.lora_B_v.9.weight', 'backbone.feat.blocks.10.attn.lora_B_v.9.weight', 'backbone.feat.blocks.1.attn.lora_B_v.9.weight', 'backbone.feat.blocks.7.attn.lora_B_v.9.weight', 'backbone.feat.blocks.9.attn.lora_B_k.9.weight', 'classifier_pool.9.bias', 'backbone.feat.blocks.6.attn.lora_B_k.9.weight', 'backbone.feat.blocks.4.attn.lora_B_k.9.weight', 'backbone.feat.blocks.2.attn.lora_B_v.9.weight', 'backbone.feat.blocks.8.attn.lora_B_v.9.weight', 'backbone.feat.blocks.7.attn.lora_B_k.9.weight', 'classifier_pool.9.weight', 'backbone.feat.blocks.0.attn.lora_B_k.9.weight', 'backbone.feat.blocks.10.attn.lora_B_k.9.weight', 'backbone.feat.blocks.11.attn.lora_B_k.9.weight', 'backbone.feat.blocks.11.attn.lora_B_v.9.weight', 'backbone.feat.blocks.4.attn.lora_B_v.9.weight', 'backbone.feat.blocks.3.attn.lora_B_k.9.weight', 'backbone.feat.blocks.6.attn.lora_B_v.9.weight', 'backbone.feat.blocks.8.attn.lora_B_k.9.weight', 'backbone.feat.blocks.0.attn.lora_B_v.9.weight', 'backbone.feat.blocks.3.attn.lora_B_v.9.weight', 'backbone.feat.blocks.5.attn.lora_B_k.9.weight', 'backbone.feat.blocks.1.attn.lora_B_k.9.weight', 'backbone.feat.blocks.9.attn.lora_B_v.9.weight'}
+================Task 9 Training!================
+The training samples number: 5000
+learning rate: [0.000498326211824246]
+================ Train on the train set ================
+Epoch [0/20] |	Loss: 0.6730 	Average Acc: 79.04 
+learning rate: [0.0005]
+================ Train on the train set ================
+Epoch [1/20] |	Loss: 0.2296 	Average Acc: 92.62 
+learning rate: [0.000498326211824246]
+================ Train on the train set ================
+Epoch [2/20] |	Loss: 0.2054 	Average Acc: 93.22 
+learning rate: [0.000493316053564413]
+================ Train on the train set ================
+Epoch [3/20] |	Loss: 0.1662 	Average Acc: 94.65 
+learning rate: [0.00048500306899511715]
+================ Train on the train set ================
+Epoch [4/20] |	Loss: 0.1771 	Average Acc: 94.45 
+learning rate: [0.0004734429148174674]
+================ Train on the train set ================
+Epoch [5/20] |	Loss: 0.1736 	Average Acc: 94.30 
+learning rate: [0.0004587129880289538]
+================ Train on the train set ================
+Epoch [6/20] |	Loss: 0.1499 	Average Acc: 95.39 
+learning rate: [0.0004409119077387294]
+================ Train on the train set ================
+Epoch [7/20] |	Loss: 0.1429 	Average Acc: 95.45 
+learning rate: [0.00042015885489761614]
+================ Train on the train set ================
+Epoch [8/20] |	Loss: 0.1431 	Average Acc: 95.37 
+learning rate: [0.00039659277436343896]
+================ Train on the train set ================
+Epoch [9/20] |	Loss: 0.1381 	Average Acc: 95.62 
+================ Test on the test set ================
+ * Average Acc: 87.29 Best acc 87.29
+ * Per-Task Acc:[80.77, 92.8, 92.32, 83.5, 91.52, 87.48, 86.04, 82.85, 88.38, 87.25]
+learning rate: [0.0003703714446439856]
+================ Train on the train set ================
+Epoch [10/20] |	Loss: 0.1362 	Average Acc: 95.64 
+learning rate: [0.00034167042154580426]
+================ Train on the train set ================
+Epoch [11/20] |	Loss: 0.1334 	Average Acc: 95.57 
+learning rate: [0.00031068186280126976]
+================ Train on the train set ================
+Epoch [12/20] |	Loss: 0.1277 	Average Acc: 95.90 
+learning rate: [0.00027761324154322326]
+================ Train on the train set ================
+Epoch [13/20] |	Loss: 0.1234 	Average Acc: 96.05 
+learning rate: [0.00024268595724066564]
+================ Train on the train set ================
+Epoch [14/20] |	Loss: 0.1292 	Average Acc: 95.90 
+learning rate: [0.00020613385339550414]
+================ Train on the train set ================
+Epoch [15/20] |	Loss: 0.1349 	Average Acc: 95.78 
+learning rate: [0.00016820165192459852]
+================ Train on the train set ================
+Epoch [16/20] |	Loss: 0.1264 	Average Acc: 95.41 
+learning rate: [0.00012914331470915828]
+================ Train on the train set ================
+Epoch [17/20] |	Loss: 0.1382 	Average Acc: 95.51 
+learning rate: [8.922034328116642e-05]
+================ Train on the train set ================
+Epoch [18/20] |	Loss: 0.1269 	Average Acc: 95.96 
+learning rate: [4.8700028030691745e-05]
+================ Train on the train set ================
+Epoch [19/20] |	Loss: 0.1295 	Average Acc: 95.45 
+================ Test on the test set ================
+ * Average Acc: 87.08 Best acc 87.29
+ * Per-Task Acc:[81.33, 92.64, 91.8, 83.09, 90.84, 87.36, 85.58, 82.36, 87.59, 88.18]
+Threshold:  0.995
+----------------------------------------
+Gradient Constraints Summary
+----------------------------------------
+Layer 1 : 11/768 type remove
+Layer 2 : 25/768 type remove
+Layer 3 : 46/768 type remove
+Layer 4 : 69/768 type remove
+Layer 5 : 94/768 type remove
+Layer 6 : 144/768 type remove
+Layer 7 : 188/768 type remove
+Layer 8 : 272/768 type remove
+Layer 9 : 375/768 type remove
+Layer 10 : 347/768 type retain
+Layer 11 : 316/768 type remove
+Layer 12 : 318/768 type remove
+----------------------------------------
+Layer 1 - Projection Matrix shape: torch.Size([768, 768])
+Layer 2 - Projection Matrix shape: torch.Size([768, 768])
+Layer 3 - Projection Matrix shape: torch.Size([768, 768])
+Layer 4 - Projection Matrix shape: torch.Size([768, 768])
+Layer 5 - Projection Matrix shape: torch.Size([768, 768])
+Layer 6 - Projection Matrix shape: torch.Size([768, 768])
+Layer 7 - Projection Matrix shape: torch.Size([768, 768])
+Layer 8 - Projection Matrix shape: torch.Size([768, 768])
+Layer 9 - Projection Matrix shape: torch.Size([768, 768])
+Layer 10 - Projection Matrix shape: torch.Size([768, 768])
+Layer 11 - Projection Matrix shape: torch.Size([768, 768])
+Layer 12 - Projection Matrix shape: torch.Size([768, 768])
+================Task 9 Testing!================
+ * Average Acc: 87.07 Best acc 87.29
+ * Per-Task Acc:[81.17, 92.62, 91.91, 82.89, 90.96, 87.33, 85.64, 82.45, 87.52, 88.18]
+这是我个人设置的准确率记录
+ACC_10:  [96.91, 96.85, 96.28, 93.34, 93.54, 91.95, 90.49, 88.85, 87.71, 87.07]
+平均ACC: 92.299
+Time cost :  8266.67398929596
