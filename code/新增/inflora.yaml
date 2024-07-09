@@ -1,0 +1,70 @@
+includes:
+  - headers/data.yaml
+  - headers/device.yaml
+  - headers/model.yaml
+  # - headers/optimizer.yaml
+
+# logger
+save_path: ./
+## data
+init_cls_num: 10
+inc_cls_num: 10
+task_num: 10
+dataset: cifar
+
+
+workers: 16
+
+# device
+device_ids : 7
+n_gpu : 1
+seed : 5
+deterministic : True
+
+batch_size: 128
+init_epoch : 20
+epoch: 20
+
+
+buffer:
+  name: LinearBuffer
+  kwargs:
+    buffer_size: 0
+    batch_size: 128
+    strategy: None     # random, equal_random, reservoir, herding
+
+## optimizer
+optimizer:
+  name: Adam
+  kwargs:
+    lr: 0.0005
+    weight_decay: 0.0
+    betas: [0.9,0.999]
+
+lr_scheduler:
+  name: CosineSchedule
+
+warmup: 0
+
+val_per_epoch: 10
+
+backbone:
+  name: vit_inflora
+  kwargs:
+    pretrained: true
+    n_tasks: 10
+    rank : 10
+    embed_dim: 768
+    num_heads: 12
+
+classifier:
+  name: InfLoRA
+  kwargs:
+    EPSILON: 1e-8
+    lamb: 0.95
+    lame: 1.0
+    task_num: 10
+    feat_dim: 768
+    num_class: 100
+
+
